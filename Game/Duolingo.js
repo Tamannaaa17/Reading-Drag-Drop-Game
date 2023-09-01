@@ -1,45 +1,76 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet,Text, } from "react-native";
 
 import WordList from "./WordList";
 import Word from "./Word";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import words from "./components/Questions";
+import { GestureHandlerRootView, RectButton } from "react-native-gesture-handler";
+import { useSafeAreaInsets, SafeAreaProvider } from "react-native-safe-area-context";
 
-const words = [
-  { id: 1, word: "Er" },
-  { id: 8, word: "hungrig" },
-  { id: 2, word: "isst" },
-  { id: 7, word: "er" },
-  { id: 6, word: "weil" },
-  { id: 9, word: "ist" },
-  { id: 5, word: "," },
-  { id: 3, word: "einen" },
-  { id: 4, word: "Apfel" }
-];
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white"
-  }
-});
 
 const Duolingo = () => {
+  const insets = useSafeAreaInsets();
+
+  const handleAnswerButtonClick =()=>{
+    
+  };
   return (
     <GestureHandlerRootView style={{flex:1}}>
     <View style={styles.container}>
       <Header />
       <WordList>
-        {words.map(word => (
+
+      {words[0]?.Options?.map(word => (
           <Word key={word.id} {...word} />
         ))}
+        
       </WordList>
-      <Footer />
+      {/* <Footer /> */}
+      <SafeAreaProvider>  
+    <View
+      style={{
+        paddingBottom: insets.bottom,
+        alignItems: "center",
+        margin: 16
+      }}
+    >
+      <View
+        style={{
+          backgroundColor: "#1B9A00",
+          borderRadius: 16,
+          height: 50,
+          ...StyleSheet.absoluteFillObject
+        }}
+      />
+      <RectButton style={styles.button}>
+        <Text style={styles.label}>CHECK</Text>
+      </RectButton>
+    </View>
+    </SafeAreaProvider>
     </View>
     </GestureHandlerRootView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white"
+  },
+  button: {
+    backgroundColor: "#59CB01",
+    width: "100%",
+    height: 45,
+    borderRadius: 16,
+    justifyContent: "center"
+  },
+  label: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 18,
+    textAlign: "center",
+  }  
+});
 
 export default Duolingo;
