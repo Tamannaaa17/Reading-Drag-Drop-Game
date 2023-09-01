@@ -1,11 +1,11 @@
 import * as React from 'react';
-import DragAndDrop from './Drag';
-
-
+import Duolingo from './Game/Duolingo';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 export default function App() {
   return(
-    
-<DragAndDrop></DragAndDrop>  
+   <SafeAreaProvider>
+<Duolingo></Duolingo> 
+</SafeAreaProvider> 
   );
 };
   
