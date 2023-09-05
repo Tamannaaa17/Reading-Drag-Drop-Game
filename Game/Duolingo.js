@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet,Text, } from "react-native";
 
 import WordList from "./WordList";
@@ -7,12 +7,19 @@ import Header from "./components/Header";
 import words from "./components/Questions";
 import { GestureHandlerRootView, RectButton } from "react-native-gesture-handler";
 import { useSafeAreaInsets, SafeAreaProvider } from "react-native-safe-area-context";
-
-
+import { useSharedValue } from "react-native-reanimated";
+// import { data } from "./WordList";
+import  {offsetData, }  from "./SortableWord";
 const Duolingo = () => {
   const insets = useSafeAreaInsets();
+  const importedData = useContext(offsetData);
+  console.log(importedData);
 
+  
+ 
   const handleAnswerButtonClick =()=>{
+    let answer;
+    answer = []
     
   };
   return (
@@ -43,9 +50,10 @@ const Duolingo = () => {
           ...StyleSheet.absoluteFillObject
         }}
       />
-      <RectButton style={styles.button}>
+      <RectButton style={styles.button} >
         <Text style={styles.label}>CHECK</Text>
       </RectButton>
+      <Text style={styles.label}>{importedData}</Text>
     </View>
     </SafeAreaProvider>
     </View>
@@ -66,7 +74,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   label: {
-    color: "white",
+    color: "black",
     fontWeight: "bold",
     fontSize: 18,
     textAlign: "center",
